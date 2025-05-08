@@ -1,0 +1,94 @@
+{
+  "myZone": {
+    "id": 1,
+    "name": "My Zone",
+    "description": "This is my zone",
+    "domainName": "myzone.com",
+    "primaryColor": "#FF5733",
+    "secondaryColor": "#33FF57",
+    "theme": "fall",
+    "realmId": 1
+  },
+  "users": [
+    {
+      "id": 1,
+      "email": "user@example.com",
+      "firstName": "John",
+      "lastName": "Doe",
+      "role": "user",
+      "avatarUrl": "https://via.placeholder.com/150"
+    },
+    {
+      "id": 2,
+      "email": "admin@example.com",
+      "firstName": "Admin",
+      "lastName": "User",
+      "role": "admin",
+      "avatarUrl": "https://via.placeholder.com/150"
+    }
+  ],
+  "profiles": [
+    {
+      "id": 1,
+      "userId": 1,
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "user@example.com",
+      "picture": "https://via.placeholder.com/150",
+      "bio": "Regular user with standard permissions",
+      "birthDate": "1990-01-15",
+      "phone": "+1234567890",
+      "address": "123 User St, Usertown"
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "firstName": "Admin",
+      "lastName": "User",
+      "email": "admin@example.com",
+      "picture": "https://via.placeholder.com/150",
+      "bio": "Administrator with full system access",
+      "birthDate": "1985-07-22",
+      "phone": "+0987654321",
+      "address": "456 Admin Ave, Adminville"
+    }
+  ],
+  "authentication": [
+    {
+      "userId": 1,
+      "profile": {
+        "id": 1,
+        "userId": 1,
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "user@example.com",
+        "picture": "https://via.placeholder.com/150",
+        "bio": "Regular user with standard permissions",
+        "birthDate": "1990-01-15",
+        "phone": "+1234567890",
+        "address": "123 User St, Usertown"
+      },
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InVzZXIiLCJpYXQiOjE2ODgxMjM0NTYsImV4cCI6MTY4ODIwOTg1Nn0.W1QQTBFrIKyqH0ym7OBvG_PNgJt2_kY2NXVo6g",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjg4MTIzNDU2LCJleHAiOjE2OTMzMDc0NTZ9.8YYG-SPS7Vy_UBB9MK3vYA",
+      "valid": true
+    },
+    {
+      "userId": 2,
+      "profile": {
+        "id": 2,
+        "userId": 2,
+        "firstName": "Admin",
+        "lastName": "User",
+        "email": "admin@example.com",
+        "picture": "https://via.placeholder.com/150",
+        "bio": "Administrator with full system access",
+        "birthDate": "1985-07-22",
+        "phone": "+0987654321",
+        "address": "456 Admin Ave, Adminville"
+      },
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg4MTIzNDU2LCJleHAiOjE2ODgyMDk4NTZ9.t_IwR2J2oqPoLx3V0bt-iQ",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjg4MTIzNDU2LCJleHAiOjE2OTMzMDc0NTZ9.2_jK4L0Awl2-x3N9YMh_RQ",
+      "valid": true
+    }
+  ]
+}

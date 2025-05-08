@@ -1,0 +1,158 @@
+@import 'libs/shared/ui/src/lib/styles/theme.scss';
+
+/* Mobile-first styles with theming */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  @apply themed-container;
+  position: relative;
+}
+
+.language-selector-container {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 10;
+  @apply rounded-full p-2 themed-border;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  svg {
+    @apply text-text-light dark:text-text-dark;
+  }
+}
+
+.login-card {
+  width: 100%;
+  max-width: 100%;
+  @apply themed-surface;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    @apply themed-text;
+    font-weight: 600;
+    font-size: 1.5rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  label {
+    font-weight: 500;
+    font-size: 14px;
+    @apply themed-text;
+  }
+
+  input {
+    padding: 14px;
+    @apply themed-input;
+    border-radius: 4px;
+    font-size: 16px;
+    -webkit-appearance: none; // Remove default iOS styling
+    appearance: none;
+
+    &:focus {
+      outline: none;
+      @apply border-primary-light dark:border-primary-dark;
+    }
+
+    &.invalid {
+      @apply border-error-light dark:border-error-dark;
+    }
+  }
+}
+
+.error-message {
+  font-size: 12px;
+  @apply themed-error-text;
+}
+
+.error-alert {
+  @apply themed-error-background themed-error-text;
+  padding: 10px;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.login-button {
+  @apply themed-button-primary;
+  border: none;
+  border-radius: 4px;
+  padding: 16px;
+  font-size: 16px;
+  cursor: pointer;
+  touch-action: manipulation; // Better touch response
+  -webkit-appearance: none; // Remove default iOS styling
+  appearance: none;
+
+  &:disabled {
+    @apply bg-gray-400 dark:bg-gray-600;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+}
+
+/* Tablet styles */
+@media (min-width: 768px) {
+  .login-container {
+    padding: 20px;
+  }
+
+  .login-card {
+    max-width: 420px;
+    padding: 30px;
+  }
+}
+
+/* Desktop styles */
+@media (min-width: 1024px) {
+  .login-card {
+    max-width: 450px;
+    padding: 35px;
+  }
+
+  .login-button {
+    &:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
+      box-shadow: none;
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "/api/My/zone": "/myZone",
+  "/api/Account/login": "/api/login",
+  "/api/Account/validate-token": "/api/validate-token",
+  "/api/Account/refresh-token": "/api/refresh-token",
+  "/api/Account/logout": "/api/logout"
+}

@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import the shared theme styles */
+@import '../../../libs/shared/ui/src/lib/styles/theme.scss';
+
+/* Import fonts that support both Latin and Arabic/Farsi scripts */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap');
+
+@layer base {
+  body {
+    @apply bg-[var(--color-background)] text-[var(--color-text)];
+    @apply transition-colors duration-200;
+    font-family: var(--font-latin);
+  }
+
+  /* Apply appropriate font family based on language direction */
+  html[dir='rtl'] body {
+    font-family: var(--font-arabic);
+  }
+
+  html[dir='ltr'] body {
+    font-family: var(--font-latin);
+  }
+}
+
+/* RTL Support for multilingual app */
+html[dir='rtl'] {
+  /* RTL-specific styles */
+  body {
+    text-align: right;
+  }
+
+  /* Flip icons, arrows, etc. that should be mirrored in RTL */
+  .flip-in-rtl {
+    transform: scaleX(-1);
+  }
+
+  /* Override default margins/paddings for RTL mode */
+  .rtl-swap-margin {
+    margin-right: 0;
+    margin-left: var(--margin-value, 1rem);
+  }
+
+  /* Example of swapping margins/paddings for common components */
+  .form-group label {
+    margin-right: 0;
+    margin-left: 0.5rem;
+  }
+}
+
+/* LTR specific overrides (when switching from RTL to LTR) */
+html[dir='ltr'] {
+  body {
+    text-align: left;
+  }
+
+  /* Reset any RTL-specific styles */
+  .rtl-swap-margin {
+    margin-left: 0;
+    margin-right: var(--margin-value, 1rem);
+  }
+}

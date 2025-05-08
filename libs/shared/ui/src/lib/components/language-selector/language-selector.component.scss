@@ -1,0 +1,54 @@
+@import '../../styles/theme.scss';
+
+.language-selector {
+  display: inline-block;
+}
+
+.language-toggle-btn {
+  padding: 0.5rem 0.75rem;
+  @apply themed-surface themed-border;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-weight: 500;
+  @apply themed-text;
+  transition: all 0.2s ease;
+
+  &:hover {
+    @apply bg-surface-light/80 dark:bg-surface-dark/80;
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+/* Styles for the alternative approach with separate buttons */
+.language-buttons {
+  display: flex;
+
+  button {
+    padding: 0.5rem 0.75rem;
+    @apply themed-surface themed-border themed-text;
+    border-width: 1px;
+    border-style: solid;
+    cursor: pointer;
+
+    &:first-child {
+      border-radius: 0.375rem 0 0 0.375rem;
+    }
+
+    &:last-child {
+      border-radius: 0 0.375rem 0.375rem 0;
+    }
+
+    &.active {
+      @apply bg-primary-light dark:bg-primary-dark text-white border-primary-light dark:border-primary-dark;
+    }
+
+    &:hover:not(.active) {
+      @apply bg-surface-light/80 dark:bg-surface-dark/80;
+    }
+  }
+}

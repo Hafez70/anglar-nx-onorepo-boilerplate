@@ -1,0 +1,28 @@
+<div class="language-selector">
+  <!-- Simple toggle button approach with new control flow -->
+  <button 
+    class="language-toggle-btn" 
+    (click)="toggleLanguage()" 
+    [attr.title]="currentLanguage() === 'fa' ? 'Switch to English' : 'تغییر به فارسی'">
+    @if (currentLanguage() === 'fa') {
+      EN
+    } @else {
+      فا
+    }
+  </button>
+
+  <!-- Alternative: dropdown or separate buttons approach
+  <div class="language-buttons">
+    <button 
+      [class.active]="currentLanguage() === 'fa'"
+      (click)="switchToFarsi()">
+      فارسی
+    </button>
+    <button 
+      [class.active]="currentLanguage() === 'en'"
+      (click)="switchToEnglish()">
+      English
+    </button>
+  </div>
+  -->
+</div>

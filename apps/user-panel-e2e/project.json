@@ -1,0 +1,10 @@
+{
+  "name": "user-panel-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/user-panel-e2e/src",
+  "tags": [],
+  "implicitDependencies": ["user-panel"],
+  "// targets": "to see all targets run: nx show project user-panel-e2e --web",
+  "targets": {}
+}

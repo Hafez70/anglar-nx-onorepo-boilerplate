@@ -1,0 +1,243 @@
+@import '../../styles/theme.scss';
+
+:host {
+  display: inline-block;
+  width: 100%;
+}
+
+// Original toggle button styling
+.theme-toggle {
+  @apply themed-surface themed-border rounded-full p-2;
+  width: 40px;
+  height: 40px;
+  display: none; // Hide the old toggle button
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+    @apply shadow-md border-primary-light dark:border-primary-dark;
+  }
+
+  svg {
+    @apply themed-text;
+  }
+}
+
+.theme-toggle-icon {
+  width: 20px;
+  height: 20px;
+  @apply transition-transform duration-300;
+}
+
+.sun-icon,
+.moon-icon {
+  @apply absolute transition-opacity duration-300;
+}
+
+.sun-icon {
+  @apply opacity-100 dark:opacity-0;
+}
+
+.moon-icon {
+  @apply opacity-0 dark:opacity-100;
+}
+
+// New grid styling
+.theme-toggle-container {
+  width: 100%;
+  max-width: 450px;
+  margin: 10px auto;
+  padding: 20px;
+
+  // Apply themed background for the container
+  @apply themed-surface themed-border rounded-lg;
+
+  // Add some depth with shadow
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, auto);
+  gap: 16px;
+  width: 100%;
+}
+
+.theme-node {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  padding: 12px 8px;
+  border-radius: 8px;
+
+  .theme-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    @apply themed-surface;
+    border: 2px solid transparent;
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+
+    svg {
+      @apply themed-text;
+      opacity: 0.7;
+      transition: all 0.3s ease;
+    }
+  }
+
+  .theme-name {
+    font-size: 12px;
+    @apply themed-text;
+    opacity: 0.7;
+    text-transform: capitalize;
+    transition: all 0.3s ease;
+  }
+
+  &:hover {
+    @apply bg-surface-light/60 dark:bg-surface-dark/60;
+
+    .theme-icon {
+      transform: translateY(-3px) scale(1.05);
+
+      svg {
+        opacity: 1;
+      }
+    }
+
+    .theme-name {
+      opacity: 1;
+      font-weight: 500;
+    }
+  }
+
+  &.active {
+    @apply bg-surface-light/80 dark:bg-surface-dark/80;
+
+    .theme-icon {
+      transform: translateY(-3px);
+
+      svg {
+        opacity: 1;
+      }
+    }
+
+    .theme-name {
+      opacity: 1;
+      font-weight: 500;
+    }
+
+    // Theme-specific active styles
+    &[data-theme='dark'] .theme-icon {
+      border-color: var(--color-primary-dark);
+      background-color: rgba(var(--color-primary-dark-rgb), 0.1);
+    }
+
+    &[data-theme='winter'] .theme-icon {
+      border-color: var(--color-primary-winter);
+      background-color: rgba(var(--color-primary-winter-rgb), 0.1);
+    }
+
+    &[data-theme='fall'] .theme-icon {
+      border-color: var(--color-primary-fall);
+      background-color: rgba(var(--color-primary-fall-rgb), 0.1);
+    }
+
+    &[data-theme='summer'] .theme-icon {
+      border-color: var(--color-primary-summer);
+      background-color: rgba(var(--color-primary-summer-rgb), 0.1);
+    }
+
+    &[data-theme='spring'] .theme-icon {
+      border-color: var(--color-primary-spring);
+      background-color: rgba(var(--color-primary-spring-rgb), 0.1);
+    }
+
+    &[data-theme='light'] .theme-icon {
+      border-color: var(--color-primary-light);
+      background-color: rgba(var(--color-primary-light-rgb), 0.1);
+    }
+  }
+}
+
+.theme-toggle-icon {
+  width: 20px;
+  height: 20px;
+  @apply transition-transform duration-300;
+}
+
+.sun-icon,
+.moon-icon {
+  @apply absolute transition-opacity duration-300;
+}
+
+.sun-icon {
+  @apply opacity-100 dark:opacity-0;
+}
+
+.moon-icon {
+  @apply opacity-0 dark:opacity-100;
+}
+
+.theme-range-bar {
+  position: relative;
+  height: 80px;
+  width: 100%;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.theme-range-track {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  width: 90%;
+  height: 6px;
+  transform: translateY(-50%);
+  border-radius: 3px;
+  background: linear-gradient(
+    to right,
+    var(--color-primary-dark),
+    var(--color-primary-winter),
+    var(--color-primary-fall),
+    var(--color-primary-summer),
+    var(--color-primary-spring),
+    var(--color-primary-light)
+  );
+  z-index: 1;
+}
+
+.theme-range-thumb {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: var(--color-primary-light);
+  top: 50%;
+  transform: translate(-50%, -50%);
+  cursor: grab;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.5);
+  z-index: 4;
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.7);
+  }
+
+  &:active {
+    cursor: grabbing;
+  }
+}

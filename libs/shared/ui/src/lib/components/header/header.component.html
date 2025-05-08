@@ -1,0 +1,37 @@
+<header class="app-header">
+  <div class="header-container">
+
+    <!-- Burger Menu Button - only visible on small screens -->
+    <button class="burger-menu-button" [class.rtl]="isRtl()" (click)="toggleMenu()">
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+    </button>
+
+    <!-- Navigation Menu - slides in on mobile, always visible on desktop -->
+    <div class="header-menu" [class.open]="isMenuOpen()" [class.rtl]="isRtl()">
+      <div class="menu-header">
+        <h2>{{ 'MENU.TITLE' | translate }}</h2>
+        <button class="close-menu" (click)="toggleMenu()">×</button>
+      </div>
+      
+      <div class="menu-items">
+        <!-- Theme Toggle -->
+        <div class="menu-item">
+          <ui-theme-toggle/>
+        </div>
+        
+        <!-- Language Selector -->
+        <div class="menu-item">
+          <span class="menu-item-label">{{ 'MENU.LANGUAGE' | translate }}</span>
+          <ui-language-selector></ui-language-selector>
+        </div>
+        
+        <!-- Additional menu items can be added below -->
+      </div>
+    </div>
+    
+    <!-- Overlay - only visible on small screens when menu is open -->
+    <div class="menu-overlay" [class.visible]="isMenuOpen()" (click)="toggleMenu()"></div>
+  </div>
+</header>

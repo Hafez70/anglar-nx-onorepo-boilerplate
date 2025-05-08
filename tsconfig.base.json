@@ -1,0 +1,27 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@authorizatione": ["libs/authorizatione/src/index.ts"],
+      "@realm": ["realm/src/index.ts"],
+      "@profile": ["libs/profile/src/index.ts"],
+      "@shared/env": ["libs/shared/constants/env"],
+      "@shared/ui": ["libs/shared/ui/src/index.ts"],
+      "@zone": ["libs/zone/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

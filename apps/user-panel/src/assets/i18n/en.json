@@ -1,0 +1,41 @@
+{
+  "APP": {
+    "TITLE": "User Panel",
+    "WELCOME": "Welcome to User Panel",
+    "LANGUAGE": "Language"
+  },
+  "NAV": {
+    "HOME": "Home",
+    "PROFILE": "Profile",
+    "SETTINGS": "Settings",
+    "LOGOUT": "Logout"
+  },
+  "LANGUAGES": {
+    "FA": "Persian",
+    "EN": "English"
+  },
+  "MENU": {
+    "TITLE": "Menu",
+    "THEME": "Theme",
+    "LANGUAGE": "Language"
+  },
+  "AUTH": {
+    "LOGIN": "Login",
+    "REGISTER": "Register",
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "FORGOT_PASSWORD": "Forgot Password?",
+    "REMEMBER_ME": "Remember Me",
+    "LOGIN_BUTTON": "Login",
+    "REGISTER_BUTTON": "Register",
+    "NO_ACCOUNT": "Don't have an account?",
+    "HAVE_ACCOUNT": "Already have an account?"
+  },
+  "COMMON": {
+    "SAVE": "Save",
+    "CANCEL": "Cancel",
+    "EDIT": "Edit",
+    "DELETE": "Delete",
+    "SUBMIT": "Submit"
+  }
+}

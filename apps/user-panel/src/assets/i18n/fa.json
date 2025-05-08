@@ -1,0 +1,41 @@
+{
+  "APP": {
+    "TITLE": "پنل کاربری",
+    "WELCOME": "خوش آمدید به پنل کاربری",
+    "LANGUAGE": "زبان"
+  },
+  "NAV": {
+    "HOME": "خانه",
+    "PROFILE": "پروفایل",
+    "SETTINGS": "تنظیمات",
+    "LOGOUT": "خروج"
+  },
+  "LANGUAGES": {
+    "FA": "فارسی",
+    "EN": "انگلیسی"
+  },
+  "MENU": {
+    "TITLE": "منو",
+    "THEME": "تم",
+    "LANGUAGE": "زبان"
+  },
+  "AUTH": {
+    "LOGIN": "ورود",
+    "REGISTER": "ثبت نام",
+    "EMAIL": "ایمیل",
+    "PASSWORD": "کلمه عبور",
+    "FORGOT_PASSWORD": "فراموشی کلمه عبور؟",
+    "REMEMBER_ME": "مرا به خاطر بسپار",
+    "LOGIN_BUTTON": "ورود",
+    "REGISTER_BUTTON": "ثبت نام",
+    "NO_ACCOUNT": "حساب کاربری ندارید؟",
+    "HAVE_ACCOUNT": "حساب کاربری دارید؟"
+  },
+  "COMMON": {
+    "SAVE": "ذخیره",
+    "CANCEL": "لغو",
+    "EDIT": "ویرایش",
+    "DELETE": "حذف",
+    "SUBMIT": "ارسال"
+  }
+}

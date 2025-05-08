@@ -1,0 +1,302 @@
+// Theme utility classes that can be used across components
+// These classes leverage the Tailwind theme colors defined in tailwind.config.js
+
+// Base styles for light theme (default)
+:root {
+  // Using CSS variables as a bridge between Tailwind and regular CSS
+  --color-primary: theme('colors.primary.DEFAULT');
+  --color-background: theme('colors.background.DEFAULT');
+  --color-surface: theme('colors.surface.DEFAULT');
+  --color-text: theme('colors.text.DEFAULT');
+  --color-border: theme('colors.border.DEFAULT');
+  --color-error: theme('colors.error.DEFAULT');
+  --color-success: theme('colors.success.DEFAULT');
+  --color-warning: theme('colors.warning.DEFAULT');
+  --color-accent: theme('colors.accent.DEFAULT');
+  --color-secondary: theme('colors.secondary.DEFAULT');
+
+  // RGB versions for opacity adjustments
+  --color-primary-rgb: 79, 70, 229; // Indigo
+  --color-background-rgb: 255, 255, 255;
+  --color-surface-rgb: 248, 250, 252;
+  --color-text-rgb: 15, 23, 42;
+  --color-border-rgb: 226, 232, 240;
+  --color-accent-rgb: 99, 102, 241;
+  --color-secondary-rgb: 168, 85, 247;
+}
+
+// Dark theme styles
+.dark {
+  --color-primary: theme('colors.primary.dark');
+  --color-background: theme('colors.background.dark');
+  --color-surface: theme('colors.surface.dark');
+  --color-text: theme('colors.text.dark');
+  --color-border: theme('colors.border.dark');
+  --color-error: theme('colors.error.dark');
+  --color-success: theme('colors.success.dark');
+  --color-warning: theme('colors.warning.dark');
+  --color-accent: theme('colors.accent.dark');
+  --color-secondary: theme('colors.secondary.dark');
+
+  // RGB versions for opacity adjustments
+  --color-primary-rgb: 129, 140, 248; // Lighter indigo
+  --color-background-rgb: 30, 41, 59;
+  --color-surface-rgb: 51, 65, 85;
+  --color-text-rgb: 241, 245, 249;
+  --color-border-rgb: 71, 85, 105;
+  --color-accent-rgb: 167, 139, 250;
+  --color-secondary-rgb: 196, 181, 253;
+}
+
+// Winter theme styles
+.winter {
+  --color-primary: theme('colors.primary.winter');
+  --color-background: theme('colors.background.winter');
+  --color-surface: theme('colors.surface.winter');
+  --color-text: theme('colors.text.winter');
+  --color-border: theme('colors.border.winter');
+  --color-error: theme('colors.error.winter');
+  --color-success: theme('colors.success.winter');
+  --color-warning: theme('colors.warning.winter');
+  --color-accent: theme('colors.accent.winter');
+  --color-secondary: theme('colors.secondary.winter');
+
+  // RGB versions for opacity adjustments
+  --color-primary-rgb: 59, 130, 246;
+  --color-background-rgb: 239, 246, 255;
+  --color-surface-rgb: 191, 219, 254;
+  --color-text-rgb: 30, 58, 138;
+  --color-border-rgb: 96, 165, 250;
+  --color-accent-rgb: 14, 165, 233;
+  --color-secondary-rgb: 147, 197, 253;
+}
+
+// Fall theme styles
+.fall {
+  --color-primary: theme('colors.primary.fall');
+  --color-background: theme('colors.background.fall');
+  --color-surface: theme('colors.surface.fall');
+  --color-text: theme('colors.text.fall');
+  --color-border: theme('colors.border.fall');
+  --color-error: theme('colors.error.fall');
+  --color-success: theme('colors.success.fall');
+  --color-warning: theme('colors.warning.fall');
+  --color-accent: theme('colors.accent.fall');
+  --color-secondary: theme('colors.secondary.fall');
+
+  // RGB versions for opacity adjustments
+  --color-primary-rgb: 180, 83, 9;
+  --color-background-rgb: 254, 243, 199;
+  --color-surface-rgb: 253, 230, 138;
+  --color-text-rgb: 120, 53, 15;
+  --color-border-rgb: 251, 191, 36;
+  --color-accent-rgb: 217, 119, 6;
+  --color-secondary-rgb: 234, 88, 12;
+}
+
+// Summer theme styles
+.summer {
+  --color-primary: theme('colors.primary.summer');
+  --color-background: theme('colors.background.summer');
+  --color-surface: theme('colors.surface.summer');
+  --color-text: theme('colors.text.summer');
+  --color-border: theme('colors.border.summer');
+  --color-error: theme('colors.error.summer');
+  --color-success: theme('colors.success.summer');
+  --color-warning: theme('colors.warning.summer');
+  --color-accent: theme('colors.accent.summer');
+  --color-secondary: theme('colors.secondary.summer');
+
+  // RGB versions for opacity adjustments
+  --color-primary-rgb: 245, 158, 11;
+  --color-background-rgb: 255, 247, 237;
+  --color-surface-rgb: 255, 237, 213;
+  --color-text-rgb: 124, 45, 18;
+  --color-border-rgb: 252, 211, 77;
+  --color-accent-rgb: 244, 63, 94;
+  --color-secondary-rgb: 251, 146, 60;
+}
+
+// Spring theme styles
+.spring {
+  --color-primary: theme('colors.primary.spring');
+  --color-background: theme('colors.background.spring');
+  --color-surface: theme('colors.surface.spring');
+  --color-text: theme('colors.text.spring');
+  --color-border: theme('colors.border.spring');
+  --color-error: theme('colors.error.spring');
+  --color-success: theme('colors.success.spring');
+  --color-warning: theme('colors.warning.spring');
+  --color-accent: theme('colors.accent.spring');
+  --color-secondary: theme('colors.secondary.spring');
+
+  // RGB versions for opacity adjustments
+  --color-primary-rgb: 16, 185, 129;
+  --color-background-rgb: 236, 253, 245;
+  --color-surface-rgb: 209, 250, 229;
+  --color-text-rgb: 6, 78, 59;
+  --color-border-rgb: 110, 231, 183;
+  --color-accent-rgb: 139, 92, 246;
+  --color-secondary-rgb: 74, 222, 128;
+}
+
+// Light theme styles (keeping similar to root for explicit theme selection)
+.light {
+  --color-primary: theme('colors.primary.light');
+  --color-background: theme('colors.background.light');
+  --color-surface: theme('colors.surface.light');
+  --color-text: theme('colors.text.light');
+  --color-border: theme('colors.border.light');
+  --color-error: theme('colors.error.light');
+  --color-success: theme('colors.success.light');
+  --color-warning: theme('colors.warning.light');
+  --color-accent: theme('colors.accent.light');
+  --color-secondary: theme('colors.secondary.light');
+
+  // RGB versions for opacity adjustments
+  --color-primary-rgb: 79, 70, 229;
+  --color-background-rgb: 255, 255, 255;
+  --color-surface-rgb: 248, 250, 252;
+  --color-text-rgb: 15, 23, 42;
+  --color-border-rgb: 226, 232, 240;
+  --color-accent-rgb: 99, 102, 241;
+  --color-secondary-rgb: 168, 85, 247;
+}
+
+// Common utility classes for themed components
+.themed-container {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.themed-surface {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.themed-text {
+  color: var(--color-text);
+  transition: color 0.3s ease;
+}
+
+.themed-border {
+  border-color: var(--color-border);
+  transition: border-color 0.3s ease;
+}
+
+.themed-button-primary {
+  background-color: var(--color-primary);
+  color: white;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: rgba(var(--color-primary-rgb), 0.9);
+  }
+}
+
+.themed-button-secondary {
+  background-color: var(--color-secondary);
+  color: white;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: rgba(var(--color-secondary-rgb), 0.9);
+  }
+}
+
+.themed-button-accent {
+  background-color: var(--color-accent);
+  color: white;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: rgba(var(--color-accent-rgb), 0.9);
+  }
+}
+
+.themed-input {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  border-color: var(--color-border);
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
+
+  &:focus {
+    border-color: var(--color-primary);
+  }
+}
+
+.themed-error-text {
+  color: var(--color-error);
+}
+
+.themed-error-background {
+  background-color: rgba(var(--color-error-rgb), 0.1);
+}
+
+.themed-success-text {
+  color: var(--color-success);
+}
+
+.themed-warning-text {
+  color: var(--color-warning);
+}
+
+// Themed overlays
+.themed-overlay {
+  background-color: rgba(var(--color-background-rgb), 0.8);
+  backdrop-filter: blur(4px);
+}
+
+// Theme-specific gradient backgrounds
+.themed-gradient {
+  &.dark {
+    background: linear-gradient(
+      to right,
+      theme('colors.primary.dark'),
+      theme('colors.secondary.dark')
+    );
+  }
+
+  &.winter {
+    background: linear-gradient(
+      to right,
+      theme('colors.primary.winter'),
+      theme('colors.accent.winter')
+    );
+  }
+
+  &.fall {
+    background: linear-gradient(
+      to right,
+      theme('colors.primary.fall'),
+      theme('colors.secondary.fall')
+    );
+  }
+
+  &.summer {
+    background: linear-gradient(
+      to right,
+      theme('colors.primary.summer'),
+      theme('colors.accent.summer')
+    );
+  }
+
+  &.spring {
+    background: linear-gradient(
+      to right,
+      theme('colors.primary.spring'),
+      theme('colors.accent.spring')
+    );
+  }
+
+  &.light {
+    background: linear-gradient(
+      to right,
+      theme('colors.primary.light'),
+      theme('colors.secondary.light')
+    );
+  }
+}

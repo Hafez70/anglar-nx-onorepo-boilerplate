@@ -1,0 +1,16 @@
+<!-- Show a loading indicator while translations are being loaded -->
+<div *ngIf="isLoading()" class="translations-loading">
+  <div class="loading-spinner"></div>
+  <p>Loading...</p>
+</div>
+
+<!-- Show the actual content only when translations are loaded -->
+<div [hidden]="isLoading()" class="app-container">
+  <!-- Add the header component -->
+  <ui-header></ui-header>
+  
+  <!-- Main content area with proper padding to account for fixed header -->
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>
