@@ -4,7 +4,7 @@ export const environment: Environment = {
   production: false,
   
   // API Configuration
-  apiUrl: 'http://localhost:3000/api',
+  apiUrl: 'http://localhost:3000/api/',
   apiVersion: 'v1',
   
   // Authentication

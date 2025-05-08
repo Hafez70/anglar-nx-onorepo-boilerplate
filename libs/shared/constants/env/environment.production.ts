@@ -4,7 +4,7 @@ export const environment: Environment = {
   production: true,
   
   // API Configuration
-  apiUrl: 'https://api.realm-of-tasks.com/api',
+  apiUrl: 'https://api.realm-of-tasks.com/api/',
   apiVersion: 'v1',
   
   // Authentication

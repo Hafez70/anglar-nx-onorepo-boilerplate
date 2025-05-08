@@ -4,20 +4,24 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HttpErrorResponse
+  HttpErrorResponse,
+  HttpClient
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, switchMap, finalize } from 'rxjs/operators';
+import { catchError, switchMap, finalize, tap, map } from 'rxjs/operators';
 import { environment } from '@shared/env';
-import { AuthorizationService } from './authorization.service';
+import { TokenService } from './token.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-    private readonly authUrl = `${environment.apiUrl}/Account`;
+  private readonly authUrl = `${environment.apiUrl}/Account`;
   
   private isRefreshing = signal<boolean>(false);
   private refreshTokenValue = signal<string | null>(null);
-  private authService = inject(AuthorizationService);
+  private tokenService = inject(TokenService);
+
+  // Inject HttpClient directly for token refresh - breaking the circular dependency
+  constructor(private http: HttpClient) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // Skip authentication for login and refresh token endpoints
@@ -48,7 +52,7 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   private addAuthHeader(request: HttpRequest<any>): HttpRequest<any> {
-    const headers = this.authService.getAuthHeaders();
+    const headers = this.tokenService.getAuthHeaders();
     if (headers.has('Authorization')) {
       return request.clone({
         headers: request.headers.set('Authorization', headers.get('Authorization') || '')
@@ -62,14 +66,14 @@ export class AuthInterceptor implements HttpInterceptor {
       this.isRefreshing.set(true);
       this.refreshTokenValue.set(null);
 
-      return this.authService.refreshToken().pipe(
+      return this.refreshToken().pipe(
         switchMap(token => {
           this.refreshTokenValue.set(token);
           return next.handle(this.addAuthHeader(request));
         }),
         catchError(error => {
-          // If refresh token fails, logout and redirect to login
-          this.authService.logout();
+          // If refresh token fails, clear tokens
+          this.tokenService.clearTokens();
           return throwError(() => error);
         }),
         finalize(() => {
@@ -94,5 +98,23 @@ export class AuthInterceptor implements HttpInterceptor {
         };
       });
     }
+  }
+  
+  // Implement token refresh directly in the interceptor to avoid circular dependency
+  private refreshToken(): Observable<string> {
+    const refreshToken = this.tokenService.getRefreshToken();
+    if (!refreshToken) {
+      return throwError(() => new Error('No refresh token available'));
+    }
+
+    return this.http.post<{ token: string, refreshToken: string }>(
+      `${this.authUrl}/refresh-token`, 
+      { refreshToken }
+    ).pipe(
+      tap(response => {
+        this.tokenService.setTokens(response.token, response.refreshToken);
+      }),
+      map(response => response.token)
+    );
   }
 }

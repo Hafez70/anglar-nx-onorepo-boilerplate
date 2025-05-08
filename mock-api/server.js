@@ -18,6 +18,23 @@ server.get('/api/My/zone', (req, res) => {
   return res.json(zone);
 });
 
+server.get('/api/My/profile', (req, res) => {
+  const authHeader = req.headers.authorization;
+  const token = authHeader && authHeader.split(' ')[1];
+
+  if (!token) {
+    return res.status(401).json({ valid: false, message: 'No token provided' });
+  }
+
+  const authRecord = router.db.get('authentication').find({ token }).value();
+
+  if (authRecord && authRecord.valid) {
+    return res.json({ ...authRecord.profile });
+  } else {
+    return res.status(401).json({ valid: false, message: 'Invalid token' });
+  }
+});
+
 // Login endpoint
 server.post('/api/Account/login', (req, res) => {
   const { email, password } = req.body;
@@ -34,17 +51,22 @@ server.post('/api/Account/login', (req, res) => {
     return res.status(401).json({ message: 'Invalid email or password' });
   }
 
+  // Get the complete profile entity
+  const profile = db.get('profiles').find({ userId: user.id }).value();
   const authInfo = db.get('authentication').find({ userId: user.id }).value();
 
   if (!authInfo) {
     return res.status(500).json({ message: 'Authentication record not found' });
   }
 
-  res.json({
+  // Return a response that matches the AuthResponse interface
+  const authResponse = {
+    profile: profile, // IProfileEntity
     token: authInfo.token,
     refreshToken: authInfo.refreshToken,
-    user: user,
-  });
+  };
+
+  res.json(authResponse);
 });
 
 // Validate token endpoint

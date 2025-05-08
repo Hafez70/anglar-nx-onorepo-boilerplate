@@ -1,23 +1,22 @@
 import { Injectable, signal, computed, inject } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { ProfileFacade } from '@profile';
 import { environment } from '@shared/env';
 import { AuthResponse, LoginCredentials } from '../models/authorization.model';
+import { TokenService } from './token.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthorizationService {
-  private readonly profileFacade = inject(ProfileFacade); // Assuming ProfileFacade is injected here
-  private readonly authUrl = `${environment.apiUrl}/Account`;
-  private readonly tokenKey = environment.storageKeys.authToken;
-  private readonly refreshTokenKey = environment.storageKeys.refreshToken;
+  private readonly profileFacade = inject(ProfileFacade);
+  private readonly tokenService = inject(TokenService);
+  private readonly authUrl = `${environment.apiUrl}Account`;
   
   // Replace BehaviorSubjects with signals
-  
   private isAuthenticatedState = signal<boolean>(false);
   
   // Create computed signals for public consumption
@@ -29,8 +28,7 @@ export class AuthorizationService {
   }
 
   private initializeAuth(): void {
-    const token = localStorage.getItem(this.tokenKey);
-    if (token) {
+    if (this.tokenService.hasValidToken()) {
       // Set authenticated state immediately if token exists
       this.isAuthenticatedState.set(true);
       
@@ -50,7 +48,7 @@ export class AuthorizationService {
 
   private validateToken(): Observable<boolean> {
     return this.http.get<{ valid: boolean }>(`${this.authUrl}/validate-token`, {
-      headers: this.getAuthHeaders()
+      headers: this.tokenService.getAuthHeaders()
     }).pipe(
       map(response => response.valid),
       catchError(() => {
@@ -73,8 +71,7 @@ export class AuthorizationService {
   login(credentials: LoginCredentials): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.authUrl}/login`, credentials).pipe(
       tap(response => {
-        localStorage.setItem(this.tokenKey, response.token);
-        localStorage.setItem(this.refreshTokenKey, response.refreshToken);
+        this.tokenService.setTokens(response.token, response.refreshToken);
         this.profileFacade.setMyProfile(response.profile);
         this.isAuthenticatedState.set(true);
       }),
@@ -87,15 +84,14 @@ export class AuthorizationService {
 
   logout(): void {
     // Clear stored tokens
-    localStorage.removeItem(this.tokenKey);
-    localStorage.removeItem(this.refreshTokenKey);
+    this.tokenService.clearTokens();
     
     // Reset authentication state
     this.profileFacade.setMyProfile(null);
     this.isAuthenticatedState.set(false);
     
     // Optional: notify the server about logout
-    this.http.post(`${this.authUrl}/logout`, {}, { headers: this.getAuthHeaders() })
+    this.http.post(`${this.authUrl}/logout`, {}, { headers: this.tokenService.getAuthHeaders() })
       .subscribe({
         next: () => console.log('Logged out successfully'),
         error: (err) => console.error('Error during logout', err)
@@ -103,15 +99,14 @@ export class AuthorizationService {
   }
 
   refreshToken(): Observable<string> {
-    const refreshToken = localStorage.getItem(this.refreshTokenKey);
+    const refreshToken = this.tokenService.getRefreshToken();
     if (!refreshToken) {
       return throwError(() => new Error('No refresh token available'));
     }
 
     return this.http.post<{ token: string, refreshToken: string }>(`${this.authUrl}/refresh-token`, { refreshToken }).pipe(
       tap(response => {
-        localStorage.setItem(this.tokenKey, response.token);
-        localStorage.setItem(this.refreshTokenKey, response.refreshToken);
+        this.tokenService.setTokens(response.token, response.refreshToken);
       }),
       map(response => response.token),
       catchError(error => {
@@ -122,11 +117,9 @@ export class AuthorizationService {
     );
   }
 
-  getAuthHeaders(): HttpHeaders {
-    const token = localStorage.getItem(this.tokenKey);
-    return new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
+  // This method is kept for backward compatibility
+  getAuthHeaders() {
+    return this.tokenService.getAuthHeaders();
   }
 
   // Method to get current authentication status for guards/components that don't use the computed signal

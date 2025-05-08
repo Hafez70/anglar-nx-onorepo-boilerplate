@@ -17,6 +17,6 @@ export class ZoneService {
    * @returns An Observable of IZoneEntity containing zone data
    */
   getMyZone(): Observable<IZoneEntity> {
-    return this.http.get<IZoneEntity>(`${this.apiUrl}/My/zone`);
+    return this.http.get<IZoneEntity>(`${this.apiUrl}My/zone`);
   }
 }

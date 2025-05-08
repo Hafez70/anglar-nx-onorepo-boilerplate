@@ -1,11 +1,10 @@
-import { Component, inject, signal, DestroyRef, OnDestroy } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { CommonModule } from '@angular/common';
+import { Component, inject, OnDestroy, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { AuthorizationService } from '../../services/authorization.service';
-import { LoginCredentials } from '../../models/authorization.model';
 import { TranslatePipe } from '@shared/ui';
+import { LoginCredentials } from '../../models/authorization.model';
+import { AuthorizationService } from '../../services/authorization.service';
 
 @Component({
   selector: 'login-component',
